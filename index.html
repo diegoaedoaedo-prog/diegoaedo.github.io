@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diego Aedo Fernández · Ingeniero Civil en Automatización</title>
+  <meta name="description" content="Portafolio de Diego Aedo Fernández, Ingeniero Civil en Automatización. Visión computacional, deep learning, simulación industrial y control automático.">
+
+  <!-- Fuentes: Space Grotesk (títulos), Inter (cuerpo), JetBrains Mono (etiquetas) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+
+  <!-- Enlace para saltar al contenido (accesibilidad con teclado) -->
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="navbar">
+    <nav class="navbar__inner" aria-label="Navegación principal">
+      <a class="navbar__logo" href="#inicio" aria-label="Ir al inicio">DA</a>
+
+      <!-- Botón hamburguesa (solo visible en móvil, Bloque B/C) -->
+      <button class="navbar__toggle" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="navbar__menu" id="menu">
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#trayectoria">Trayectoria</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a class="btn btn--secondary" href="assets/cv.pdf" download>CV ↓</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ 1. HERO ============ -->
+    <section class="hero" id="inicio">
+      <div class="container">
+        <p class="hero__eyebrow">Hola, soy</p>
+        <h1 class="hero__title">Diego Aedo Fernández</h1>
+        <p class="hero__role">Ingeniero Civil en Automatización</p>
+        <!-- [EDITAR] Tu frase de propuesta de valor (máx. 2 líneas) -->
+        <p class="hero__lead">
+          Automatizo procesos y enseño a las máquinas a ver: combino control,
+          simulación e inteligencia artificial para resolver problemas industriales reales.
+        </p>
+
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="#proyectos">Ver proyectos</a>
+          <a class="link-arrow" href="#contacto">Contactar <span aria-hidden="true">→</span></a>
+        </div>
+
+        <ul class="hero__areas" aria-label="Áreas de especialización">
+          <li>visión computacional</li>
+          <li>deep learning</li>
+          <li>simulación</li>
+          <li>control</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 2. SOBRE MÍ ============ -->
+    <section class="section reveal" id="sobre-mi">
+      <div class="container">
+        <h2 class="section__title">Sobre mí</h2>
+
+        <div class="about">
+          <figure class="about__photo">
+            <!-- [EDITAR] Reemplaza por tu foto: assets/img/diego.jpg -->
+            <div class="placeholder" role="img" aria-label="Foto de Diego Aedo Fernández">Tu foto aquí</div>
+          </figure>
+
+          <div class="about__text">
+            <!-- [EDITAR] Resumen de 4-5 líneas, en primera persona -->
+            <p>
+              Soy Ingeniero Civil en Automatización y me interesa el punto donde
+              la ingeniería de control se encuentra con la inteligencia artificial.
+              Trabajo en visión computacional con deep learning y transfer learning,
+              y me gusta llevar los modelos más allá del notebook: evaluarlos con
+              rigor y pensarlos para entornos industriales.
+            </p>
+            <p>
+              Aprendo rápido, documento lo que hago y disfruto los problemas que
+              mezclan varias disciplinas.
+            </p>
+
+            <dl class="about__facts">
+              <div><dt>Ubicación</dt><dd>Concepción, Chile</dd></div>
+              <div><dt>Disponibilidad</dt><dd>Abierto a oportunidades</dd></div>
+              <div><dt>Idiomas</dt><dd>Español (nativo) · Inglés (editar nivel)</dd></div>
+              <div><dt>Formación</dt><dd>Ingeniería Civil en Automatización</dd></div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. PROYECTOS ============ -->
+    <section class="section reveal" id="proyectos">
+      <div class="container">
+        <h2 class="section__title">Proyectos destacados</h2>
+        <p class="section__intro">
+          Una selección de trabajos técnicos. Abre cada ficha para ver el contexto,
+          el enfoque y los resultados.
+        </p>
+
+        <div class="projects-grid" id="projects-grid">
+          <!-- Las tarjetas se generan automáticamente desde js/projects.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 4. HABILIDADES ============ -->
+    <section class="section reveal" id="habilidades">
+      <div class="container">
+        <h2 class="section__title">Habilidades</h2>
+
+        <!-- [EDITAR] Deja solo lo que realmente dominas -->
+        <div class="skills">
+          <div class="skills__row">
+            <h3 class="skills__category">Inteligencia artificial</h3>
+            <ul class="tags">
+              <li class="tag">Deep Learning</li>
+              <li class="tag">Transfer Learning</li>
+              <li class="tag">CNN</li>
+              <li class="tag">PyTorch / TensorFlow</li>
+            </ul>
+          </div>
+
+          <div class="skills__row">
+            <h3 class="skills__category">Visión y datos</h3>
+            <ul class="tags">
+              <li class="tag">Visión computacional</li>
+              <li class="tag">OpenCV</li>
+              <li class="tag">NumPy</li>
+              <li class="tag">Pandas</li>
+            </ul>
+          </div>
+
+          <div class="skills__row">
+            <h3 class="skills__category">Control y automatización</h3>
+            <ul class="tags">
+              <li class="tag">Control PID</li>
+              <li class="tag">Modelado de sistemas</li>
+              <li class="tag">PLC</li>
+              <li class="tag">SCADA</li>
+            </ul>
+          </div>
+
+          <div class="skills__row">
+            <h3 class="skills__category">Simulación</h3>
+            <ul class="tags">
+              <li class="tag">MATLAB</li>
+              <li class="tag">Simulink</li>
+            </ul>
+          </div>
+
+          <div class="skills__row">
+            <h3 class="skills__category">Programación y herramientas</h3>
+            <ul class="tags">
+              <li class="tag">Python</li>
+              <li class="tag">Git</li>
+              <li class="tag">GitHub</li>
+              <li class="tag">Jupyter</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 5. TRAYECTORIA (experiencia y formación) ============ -->
+    <section class="section reveal" id="trayectoria">
+      <div class="container">
+        <h2 class="section__title">Experiencia y formación</h2>
+
+        <!-- [EDITAR] Fechas, cargos e instituciones reales -->
+        <ol class="timeline">
+          <li class="timeline__item">
+            <span class="timeline__date">2026</span>
+            <h3 class="timeline__title">Título de Ingeniero Civil en Automatización</h3>
+            <p class="timeline__place">Universidad (editar)</p>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__date">2025</span>
+            <h3 class="timeline__title">Práctica profesional / Proyecto de título (editar)</h3>
+            <p class="timeline__place">Empresa o institución (editar)</p>
+            <p class="timeline__detail">Una línea con tu logro principal.</p>
+          </li>
+          <li class="timeline__item">
+            <span class="timeline__date">2024</span>
+            <h3 class="timeline__title">Certificación o curso relevante (editar)</h3>
+            <p class="timeline__place">Plataforma o institución (editar)</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ 6. CONTACTO ============ -->
+    <section class="section reveal" id="contacto">
+      <div class="container">
+        <h2 class="section__title">Contacto</h2>
+        <p class="contact__headline">¿Conversamos?</p>
+        <p class="section__intro">
+          Estoy abierto a oportunidades en automatización, visión computacional e
+          inteligencia artificial aplicada a la industria.
+        </p>
+
+        <div class="contact">
+          <ul class="contact__links">
+            <!-- [EDITAR] Reemplaza los enlaces por los tuyos -->
+            <li><a href="mailto:tu-correo@ejemplo.com">Correo · tu-correo@ejemplo.com <span aria-hidden="true">→</span></a></li>
+            <li><a href="https://www.linkedin.com/in/tu-usuario" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">→</span></a></li>
+            <li><a href="https://github.com/tu-usuario" target="_blank" rel="noopener">GitHub <span aria-hidden="true">→</span></a></li>
+          </ul>
+          <a class="btn btn--primary" href="assets/cv.pdf" download>Descargar CV ↓</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© 2026 Diego Aedo Fernández</p>
+      <a class="link-arrow" href="#inicio">Volver arriba <span aria-hidden="true">↑</span></a>
+    </div>
+  </footer>
+
+  <!-- ============ MODAL DE FICHA TÉCNICA ============ -->
+  <!--
+    Elemento nativo <dialog>: el navegador gestiona Esc, foco y capa de fondo.
+    El contenido (#modal-body) lo genera js/main.js desde js/projects.js.
+  -->
+  <dialog class="modal" id="project-modal" aria-labelledby="modal-title">
+    <div class="modal__content">
+      <button class="modal__close" aria-label="Cerrar ficha">✕</button>
+      <div id="modal-body"></div>
+    </div>
+  </dialog>
+
+  <script src="js/projects.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

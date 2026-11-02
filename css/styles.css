@@ -1,0 +1,806 @@
+/* ==========================================================
+   PORTAFOLIO · Diego Aedo Fernández
+   Hoja de estilos (mobile-first)
+
+   Índice
+   1. Tokens (variables)
+   2. Reset y base
+   3. Utilidades y botones
+   4. Navbar
+   5. Hero
+   6. Secciones
+   7. Sobre mí
+   8. Proyectos (tarjetas)
+   9. Etiquetas (tags)
+   10. Habilidades
+   11. Trayectoria (línea de tiempo)
+   12. Contacto y footer
+   13. Modal
+   14. Animación de aparición
+   15. Movimiento reducido
+   ========================================================== */
+
+
+/* ---------- 1. TOKENS ---------- */
+:root {
+  /* Colores */
+  --bg: #0F1115;
+  --surface: #171A20;
+  --border: #262A33;
+  --text: #E8E6E1;
+  --text-muted: #9A9EA8;
+  --accent: #FF8A5B;
+  --accent-soft: rgba(255, 138, 91, 0.12);
+
+  /* Tipografía */
+  --font-title: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Espaciado (múltiplos de 8) */
+  --s1: 8px;
+  --s2: 16px;
+  --s3: 24px;
+  --s4: 48px;
+  --s5: 96px;
+
+  /* Forma y medidas */
+  --radius: 12px;
+  --container: 1080px;
+  --nav-h: 64px;
+
+  /* Transiciones */
+  --fast: 180ms ease;
+}
+
+
+/* ---------- 2. RESET Y BASE ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Para que al ir a un ancla, la navbar fija no tape el título */
+  scroll-padding-top: calc(var(--nav-h) + var(--s2));
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Bloquea el scroll del fondo cuando el modal está abierto */
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-family: var(--font-title);
+  line-height: 1.15;
+  font-weight: 600;
+}
+
+p { margin: 0 0 var(--s2); }
+
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img { max-width: 100%; display: block; }
+
+button { font: inherit; color: inherit; }
+
+/* Indicador de foco visible para quien navega con teclado */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+
+/* ---------- 3. UTILIDADES Y BOTONES ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--s3);
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--s2);
+  z-index: 200;
+  padding: var(--s1) var(--s2);
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 600;
+  border-radius: var(--radius);
+}
+.skip-link:focus { top: var(--s1); }
+
+/* Recuadro de marcador para imágenes pendientes */
+.placeholder {
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 var(--s3);
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background var(--fast), border-color var(--fast), color var(--fast), transform var(--fast);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--bg);
+}
+.btn--primary:hover {
+  background: #ff9d76;
+  transform: translateY(-1px);
+}
+
+.btn--secondary {
+  border-color: var(--border);
+  background: transparent;
+  color: var(--text);
+}
+.btn--secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Enlace con flecha */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent);
+  font-weight: 500;
+}
+.link-arrow span {
+  transition: transform var(--fast);
+}
+.link-arrow:hover span,
+.card:hover .link-arrow span {
+  transform: translateX(4px);
+}
+
+
+/* ---------- 4. NAVBAR ---------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--nav-h);
+  background: rgba(23, 26, 32, 0.82);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--s3);
+}
+
+.navbar__logo {
+  font-family: var(--font-title);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+}
+
+/* Botón hamburguesa (móvil) */
+.navbar__toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0 11px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.navbar__toggle span {
+  display: block;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform var(--fast), opacity var(--fast);
+}
+.navbar__toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.navbar__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.navbar__toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Menú móvil: panel a pantalla completa, oculto por defecto.
+   El JS (Bloque C) solo cambia aria-expanded del botón. */
+.navbar__menu {
+  display: none;
+  position: fixed;
+  top: var(--nav-h);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  flex-direction: column;
+  gap: var(--s3);
+  padding: var(--s4) var(--s3);
+  background: var(--bg);
+}
+.navbar__toggle[aria-expanded="true"] + .navbar__menu {
+  display: flex;
+}
+.navbar__menu a:not(.btn) {
+  font-family: var(--font-title);
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* Estado activo (lo marcará el JS según la sección visible) */
+.navbar__menu a.is-active { color: var(--accent); }
+
+.navbar__menu a:not(.btn):hover { color: var(--accent); }
+
+.navbar__menu .btn {
+  align-self: flex-start;
+  min-height: 44px;
+}
+
+
+/* ---------- 5. HERO ---------- */
+.hero {
+  padding: calc(var(--nav-h) + var(--s5)) 0 var(--s5);
+}
+
+.hero__eyebrow {
+  margin-bottom: var(--s1);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--accent);
+}
+
+.hero__title {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.hero__role {
+  margin: var(--s1) 0 var(--s3);
+  font-family: var(--font-title);
+  font-size: 20px;
+  color: var(--text-muted);
+}
+
+.hero__lead {
+  max-width: 560px;
+  margin-bottom: var(--s4);
+  font-size: 18px;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s3);
+  margin-bottom: var(--s4);
+}
+
+.hero__areas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s1) 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.hero__areas li + li::before {
+  content: "·";
+  margin: 0 var(--s2);
+  color: var(--border);
+}
+
+
+/* ---------- 6. SECCIONES ---------- */
+.section {
+  padding: var(--s5) 0;
+  border-top: 1px solid var(--border);
+}
+
+.section__title {
+  margin-bottom: var(--s3);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.section__intro {
+  max-width: 600px;
+  margin-bottom: var(--s4);
+  color: var(--text-muted);
+}
+
+
+/* ---------- 7. SOBRE MÍ ---------- */
+.about {
+  display: grid;
+  gap: var(--s4);
+}
+
+.about__photo { margin: 0; }
+.about__photo .placeholder {
+  aspect-ratio: 1 / 1;
+  max-width: 240px;
+}
+
+.about__text p {
+  max-width: 620px;
+}
+
+.about__facts {
+  display: grid;
+  gap: var(--s2);
+  margin: var(--s4) 0 0;
+}
+.about__facts div {
+  padding-top: var(--s2);
+  border-top: 1px solid var(--border);
+}
+.about__facts dt {
+  margin-bottom: 4px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+.about__facts dd { margin: 0; }
+
+
+/* ---------- 8. PROYECTOS (tarjetas) ---------- */
+.projects-grid {
+  display: grid;
+  gap: var(--s3);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--s3);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color var(--fast), transform var(--fast);
+}
+.card:hover,
+.card:focus-visible {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.card__media {
+  aspect-ratio: 16 / 9;
+  margin-bottom: var(--s3);
+  overflow: hidden;
+  background: var(--bg);
+}
+/* Cuando reemplaces el recuadro por una <img> */
+.card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card__category {
+  margin-bottom: var(--s1);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.card__title {
+  margin-bottom: var(--s1);
+  font-size: 22px;
+}
+
+.card__desc {
+  margin-bottom: var(--s2);
+  color: var(--text-muted);
+  font-size: 16px;
+}
+
+.card .tags { margin-bottom: var(--s3); }
+
+/* Empuja "Ver ficha" al fondo para alinear tarjetas de distinta altura */
+.card .link-arrow { margin-top: auto; }
+
+
+/* ---------- 9. ETIQUETAS (tags) ---------- */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s1);
+}
+
+.tag {
+  padding: 4px 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* ---------- 10. HABILIDADES ---------- */
+.skills__row {
+  display: grid;
+  gap: var(--s2);
+  padding: var(--s3) 0;
+  border-top: 1px solid var(--border);
+}
+.skills__row:first-child { border-top: 0; padding-top: 0; }
+
+.skills__category {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+
+/* ---------- 11. TRAYECTORIA ---------- */
+.timeline {
+  position: relative;
+  padding-left: var(--s4);
+}
+/* Línea vertical */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 3px;
+  width: 1px;
+  background: var(--border);
+}
+
+.timeline__item {
+  position: relative;
+  padding-bottom: var(--s4);
+}
+.timeline__item:last-child { padding-bottom: 0; }
+
+/* Punto de cada hito */
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: calc(-1 * var(--s4));
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+
+.timeline__date {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent);
+}
+.timeline__title {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+.timeline__place {
+  margin: 0;
+  color: var(--text-muted);
+}
+.timeline__detail {
+  margin: var(--s1) 0 0;
+  font-size: 16px;
+}
+
+
+/* ---------- 12. CONTACTO Y FOOTER ---------- */
+.contact__headline {
+  margin-bottom: var(--s2);
+  font-family: var(--font-title);
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.contact {
+  display: grid;
+  gap: var(--s4);
+  align-items: start;
+}
+.contact .btn { justify-self: start; }
+
+.contact__links li { border-top: 1px solid var(--border); }
+.contact__links li:last-child { border-bottom: 1px solid var(--border); }
+.contact__links a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--s2) 0;
+  transition: color var(--fast), padding var(--fast);
+}
+.contact__links a:hover {
+  color: var(--accent);
+  padding-left: var(--s1);
+}
+
+.footer {
+  padding: var(--s3) 0;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 15px;
+}
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s2);
+}
+.footer p { margin: 0; }
+
+
+/* ---------- 13. MODAL ---------- */
+/* Usamos <dialog>: el navegador gestiona Esc, foco y capa de fondo */
+.modal {
+  width: min(760px, calc(100% - 32px));
+  max-height: calc(100vh - 48px);
+  margin: auto;
+  padding: 0;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.modal[open] { display: flex; }
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.modal__content {
+  width: 100%;
+  padding: var(--s3);
+  overflow-y: auto;
+}
+
+.modal__close {
+  position: absolute;
+  top: var(--s2);
+  right: var(--s2);
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: border-color var(--fast), color var(--fast);
+}
+.modal__close:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.modal__media {
+  aspect-ratio: 16 / 9;
+  margin-bottom: var(--s3);
+  overflow: hidden;
+}
+.modal__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal__title {
+  margin-bottom: var(--s2);
+  font-size: 28px;
+  letter-spacing: -0.01em;
+}
+
+/* Barra de métricas */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s2);
+  margin: var(--s3) 0;
+  padding: var(--s3) 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.metrics strong {
+  display: block;
+  font-family: var(--font-title);
+  font-size: 28px;
+  line-height: 1.1;
+}
+.metrics span {
+  display: block;
+  margin-top: 4px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.modal__block { margin-bottom: var(--s3); }
+.modal__block h4 {
+  margin-bottom: var(--s1);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+.modal__block p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.modal__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3);
+  padding-top: var(--s2);
+  border-top: 1px solid var(--border);
+}
+
+
+/* ---------- 14. ANIMACIÓN DE APARICIÓN ---------- */
+/* Solo se activa si el JS añade la clase "js" al <html> (Bloque C).
+   Así, sin JavaScript, el contenido siempre es visible. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* ==========================================================
+   RESPONSIVE (mobile-first: de menor a mayor)
+   ========================================================== */
+
+/* ---- ≥ 640px ---- */
+@media (min-width: 640px) {
+  .hero__title { font-size: 44px; }
+  .hero__role { font-size: 22px; }
+
+  .about {
+    grid-template-columns: 240px 1fr;
+    align-items: start;
+  }
+  .about__facts { grid-template-columns: repeat(2, 1fr); }
+
+  .skills__row {
+    grid-template-columns: 240px 1fr;
+    align-items: baseline;
+  }
+
+  .contact__headline { font-size: 44px; }
+  .metrics strong { font-size: 36px; }
+  .modal__content { padding: var(--s4); }
+}
+
+/* ---- ≥ 960px ---- */
+@media (min-width: 960px) {
+  .hero__title { font-size: 56px; }
+  .hero__role { font-size: 24px; }
+  .hero__lead { font-size: 20px; }
+
+  /* Navbar completa: se oculta la hamburguesa y el menú pasa a fila */
+  .navbar__toggle { display: none; }
+  .navbar__menu {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--s3);
+    padding: 0;
+    background: none;
+  }
+  .navbar__menu a:not(.btn) {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--text-muted);
+  }
+  .navbar__menu .btn {
+    align-self: auto;
+    min-height: 40px;
+    padding: 0 var(--s2);
+    font-size: 14px;
+  }
+
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .contact {
+    grid-template-columns: 1fr auto;
+    gap: var(--s5);
+  }
+  .contact .btn { justify-self: end; }
+}
+
+
+/* ---------- 15. MOVIMIENTO REDUCIDO ---------- */
+/* Quien tiene activada esta opción en su sistema no ve animaciones */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
