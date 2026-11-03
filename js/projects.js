@@ -1,8 +1,8 @@
 /* ==========================================================
    PROJECTS.JS · TUS DATOS
-   Este es el archivo que más vas a editar.
+   Este es el archivo que más editaré.
 
-   Para AGREGAR un proyecto: copia un bloque completo { ... },
+   Para AGREGAR un proyecto: copiar un bloque completo { ... },
    pégalo al final de la lista (con una coma entre bloques) y
    cambia los textos. No hay que tocar HTML ni CSS.
 
@@ -25,81 +25,41 @@
 const PROJECTS = [
   {
     id: "vision-transfer-learning",
-    category: "Visión computacional",
-    title: "Clasificación de imágenes con transfer learning",
+    category: "Visión computacional - biomédica",
+    title: "Clasificación de imágenes con Redes neuronales y Transfer Learning",
     summary:
-      "Clasificador basado en redes convolucionales preentrenadas, adaptado mediante fine-tuning a un conjunto de datos específico.",
+      "Desarrollo de un sistema de inteligencia artificial para clasificar tomografías computarizadas renales en cuatro categorías: quiste, cálculo renal, tumor y normal. Mediante aprendizaje semi-supervisado, aprovecha datos etiquetados y no etiquetados para reducir el etiquetado manual y lograr un alto rendimiento de clasificación.",
     tags: ["Python", "Deep Learning", "Transfer Learning"],
-    image: null,
+    image: "assets/img/vision-portada.jpg",
     imageAlt: "Diagrama del pipeline de clasificación de imágenes",
     metrics: [
-      { value: "XX%", label: "precisión" },
-      { value: "XX", label: "métrica 2" },
-      { value: "XX", label: "métrica 3" }
+      { value: "98%", label: "Precisión" },
+      { value: "98,96%", label: "Macro F1" },
+      { value: "98%", label: "Weighted F1-score" }
     ],
     context:
-      "Describe qué problema quieres resolver con este clasificador, qué tipo de imágenes usas y por qué importa en un contexto industrial.",
+      "La clasificación automática de imágenes médicas requiere grandes cantidades de datos etiquetados por especialistas, lo que representa un desafío en términos de tiempo y recursos. Este proyecto aborda dicha problemática mediante técnicas de aprendizaje semi-supervisado aplicadas a imágenes de tomografía computarizada del riñón.",
     approach:
-      "Explica cómo lo abordaste: origen y preparación de los datos, red base preentrenada elegida, congelamiento de capas y estrategia de fine-tuning.",
+      "Se implementó una arquitectura ResNet-50 con pesos preentrenados en RadImageNet, utilizando Transfer Learning y una estrategia semi-supervisada basada en pseudoetiquetado mediante modelos Teacher y Student",
     tools:
-      "Python, librería de deep learning (PyTorch o TensorFlow), entorno de entrenamiento y otras herramientas que uses.",
+      "Python, TensorFlow, Keras, ResNet-50, RadImageNet, Scikit-learn, OpenCV, PIL, Matplotlib y Seaborn.",
     results:
-      "Métricas de evaluación (precisión, recall, matriz de confusión), comparación contra un modelo entrenado desde cero y conclusiones.",
+      "En la segunda experiencia experimental, el modelo Student alcanzó un Accuracy de 98 %, un Macro F1-score de 98,96 % y un Weighted F1-score de 98 %. Durante esta experiencia se incorporaron 4.537 pseudoetiquetas, con una auditoría de 99,60 % de coincidencia con las etiquetas reales.",
     links: [
       { label: "Repositorio", url: "" },
       { label: "Informe", url: "" }
     ]
   },
 
-  {
-    id: "simulacion-planta",
-    category: "Simulación industrial",
-    title: "Simulación de una línea de producción",
-    summary:
-      "[EJEMPLO] Modelo dinámico de un proceso industrial para analizar cuellos de botella y validar estrategias de control.",
-    tags: ["Simulink", "Python", "Modelado"],
-    image: null,
-    imageAlt: "Captura del modelo de simulación",
-    metrics: [
-      { value: "XX%", label: "mejora de throughput" },
-      { value: "XX s", label: "tiempo de ciclo" },
-      { value: "XX", label: "escenarios simulados" }
-    ],
-    context: "[EJEMPLO] Contexto del proceso que se modeló y el objetivo de la simulación.",
-    approach: "[EJEMPLO] Cómo se construyó el modelo, qué supuestos se hicieron y cómo se validó.",
-    tools: "[EJEMPLO] Simulink, Python y otras herramientas.",
-    results: "[EJEMPLO] Resultados de los distintos escenarios y decisiones que permitió tomar.",
-    links: [{ label: "Informe", url: "" }]
-  },
+
 
   {
-    id: "control-pid",
-    category: "Control automático",
-    title: "Diseño y sintonía de un controlador PID",
-    summary:
-      "[EJEMPLO] Identificación de la planta, diseño del controlador y análisis de estabilidad y respuesta al escalón.",
-    tags: ["MATLAB", "PID", "Estabilidad"],
-    image: null,
-    imageAlt: "Gráfico de la respuesta al escalón del sistema controlado",
-    metrics: [
-      { value: "XX%", label: "sobreimpulso" },
-      { value: "XX s", label: "tiempo de establecimiento" },
-      { value: "XX", label: "margen de fase" }
-    ],
-    context: "[EJEMPLO] Qué sistema se controló y qué especificaciones debía cumplir.",
-    approach: "[EJEMPLO] Identificación del modelo, método de sintonía y análisis de estabilidad.",
-    tools: "[EJEMPLO] MATLAB, Control System Toolbox.",
-    results: "[EJEMPLO] Comparación de la respuesta con y sin controlador.",
-    links: [{ label: "Repositorio", url: "" }]
-  },
-
-  {
-    id: "procesamiento-imagenes",
+    id: "EJEMPLO procesamiento-imagenes",
     category: "Procesamiento de imágenes",
-    title: "Inspección visual automática",
+    title: "AQUI DEJARE CUANDO HAGA OTRO PROYECTO ",
     summary:
       "[EJEMPLO] Pipeline de preprocesamiento y segmentación para detectar defectos en piezas a partir de imágenes.",
-    tags: ["OpenCV", "Python", "Segmentación"],
+    tags: ["EJEMPLO1", "EJEMPLO2", "EJEMPLO 3"],
     image: null,
     imageAlt: "Imagen de una pieza con el defecto detectado",
     metrics: [
