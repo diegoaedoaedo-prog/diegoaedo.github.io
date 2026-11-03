@@ -377,8 +377,12 @@ button { font: inherit; color: inherit; }
 
 .about__photo { margin: 0; }
 .about__photo .placeholder {
-  aspect-ratio: 1 / 1;
+  width: 100%;
   max-width: 240px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;       /* recorta sin deformar si la foto no es cuadrada */
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
 }
 
 .about__text p {
