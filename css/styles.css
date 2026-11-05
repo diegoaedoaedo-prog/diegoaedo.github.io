@@ -212,6 +212,7 @@ button { font: inherit; color: inherit; }
   height: var(--nav-h);
   border-bottom: 1px solid var(--border);
 }
+
 .navbar::before {
   content: "";
   position: absolute;
@@ -280,8 +281,8 @@ button { font: inherit; color: inherit; }
 .navbar__toggle[aria-expanded="true"] + .navbar__menu {
   display: flex;
   overflow-y: auto;
-
 }
+
 /* Con el menú abierto, la página de fondo no debe desplazarse */
 @media (max-width: 959px) {
   body:has(.navbar__toggle[aria-expanded="true"]) {
