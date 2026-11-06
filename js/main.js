@@ -270,6 +270,33 @@
   }
 
 
+  /* ---------- 7. COPIAR CORREO ---------- */
+
+  document.querySelectorAll(".copy-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      const text = btn.dataset.copy;
+      const original = btn.textContent;
+
+      function done() {
+        btn.textContent = "¡Copiado!";
+        setTimeout(function () { btn.textContent = original; }, 1800);
+      }
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done);
+      } else {
+        // Alternativa para navegadores sin la API moderna
+        const area = document.createElement("textarea");
+        area.value = text;
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand("copy");
+        document.body.removeChild(area);
+        done();
+      }
+    });
+  });
+
   /* ---------- ARRANQUE ---------- */
   renderProjects();
 })();

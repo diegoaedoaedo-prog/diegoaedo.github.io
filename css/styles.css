@@ -606,6 +606,35 @@ button { font: inherit; color: inherit; }
   padding-left: var(--s1);
 }
 
+/* Correo con botón "Copiar" */
+.contact__email {
+  display: flex;
+  flex-direction: column;     /* móvil: el botón queda bajo el correo */
+  align-items: flex-start;
+  padding-bottom: var(--s2);
+}
+.contact__email a {
+  align-self: stretch;
+  min-width: 0;
+}
+.copy-btn {
+  flex-shrink: 0;
+  min-height: 36px;
+  padding: 0 var(--s2);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: border-color var(--fast), color var(--fast);
+}
+.copy-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .footer {
   padding: var(--s3) 0;
   border-top: 1px solid var(--border);
@@ -774,6 +803,14 @@ button { font: inherit; color: inherit; }
   .contact__headline { font-size: 44px; }
   .metrics strong { font-size: 36px; }
   .modal__content { padding: var(--s4); }
+
+    .contact__email {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--s2);
+    padding-bottom: 0;
+  }
+  .contact__email a { flex: 1; align-self: auto; }
 }
 
 /* ---- ≥ 960px ---- */
