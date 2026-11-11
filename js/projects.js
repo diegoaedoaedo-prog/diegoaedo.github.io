@@ -55,13 +55,14 @@ const PROJECTS = [
 
   {
     id: "EJEMPLO procesamiento-imagenes",
-    category: "Procesamiento de imágenes",
-    title: "AQUI DEJARE CUANDO HAGA OTRO PROYECTO ",
+    category: "Vision computacional - Detección",
+    title: "Deteccion y conteo de personas en camara de seguridad de casa ",
     summary:
       "[EJEMPLO] Pipeline de preprocesamiento y segmentación para detectar defectos en piezas a partir de imágenes.",
-    tags: ["EJEMPLO1", "EJEMPLO2", "EJEMPLO 3"],
-    image: null,
+    tags: ["Python", "Yolo11m", "Tracker", "Detección"],
+    image: "assets/img/imagen_deteccion_camara.jpg",
     imageAlt: "Imagen de una pieza con el defecto detectado",
+    video: "assets/video/video_deteccion_camara_web.mp4",
     metrics: [
       { value: "XX%", label: "detección de defectos" },
       { value: "XX ms", label: "tiempo por imagen" }

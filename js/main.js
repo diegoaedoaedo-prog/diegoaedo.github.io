@@ -50,6 +50,26 @@
     return placeholder;
   }
 
+    // Video del proyecto (solo se usa en el modal)
+  function createVideo(project) {
+    const wrap = el("div", "modal__media modal__media--video");
+    const video = document.createElement("video");
+    video.controls = true;
+    video.preload = "metadata";
+    video.playsInline = true;
+    if (project.image) video.poster = project.image; // la portada se ve antes de dar play
+    video.setAttribute("aria-label", project.imageAlt || project.title);
+
+    const source = document.createElement("source");
+    source.src = project.video;
+    source.type = "video/mp4";
+    video.appendChild(source);
+    video.appendChild(document.createTextNode("Tu navegador no puede reproducir este video."));
+
+    wrap.appendChild(video);
+    return wrap;
+  }
+
   // Enlace con flecha: "Ver ficha →"
   function createArrowLabel(text, tag) {
     const node = el(tag || "span", "link-arrow", text + " ");
@@ -119,7 +139,9 @@
   function renderModal(project) {
     modalBody.innerHTML = "";
 
-    modalBody.appendChild(createMedia(project, "modal__media"));
+      modalBody.appendChild(
+      project.video ? createVideo(project) : createMedia(project, "modal__media")
+    );
 
     const title = el("h3", "modal__title", project.title);
     title.id = "modal-title"; // lo usa aria-labelledby del <dialog>
@@ -182,6 +204,8 @@
 
     // Al cerrar (por cualquier vía), devolver el foco a la tarjeta
     modal.addEventListener("close", function () {
+      const playing = modalBody.querySelector("video");
+      if (playing) playing.pause();
       if (lastFocused && typeof lastFocused.focus === "function") {
         lastFocused.focus();
       }

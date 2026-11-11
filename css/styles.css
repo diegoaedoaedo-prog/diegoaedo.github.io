@@ -708,8 +708,30 @@ button { font: inherit; color: inherit; }
   background: var(--bg);
 }
 /* Si hay imagen, el contenedor se adapta a ella en vez de forzar 16:9 */
-.modal__media:has(img) {
+.modal__media:has(img) 
   aspect-ratio: auto;
+
+
+  .modal__media {
+  border-radius: var(--radius);
+}
+
+.modal__media--video {
+  aspect-ratio: auto;   /* se adapta al video en vez de forzar 16:9 */
+}
+.modal__media video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  background: #000;
+}
+.modal__media iframe,
+.modal__media video {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #000;
 }
 
 .modal__title {
