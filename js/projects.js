@@ -64,12 +64,12 @@ const PROJECTS = [
     imageAlt: "Persona cruzando la línea de conteo en la cámara de seguridad",
     video: "assets/video/video_deteccion_camara_web.mp4",
     metrics: [
-      { value: "80%", label: "Exactitud" },
+      { value: "80%", label: "Exactitud en conteo" },
     ],
     context: "El conteo manual de personas presenta limitaciones en términos de precisión, continuidad y disponibilidad de información. Este proyecto explora el uso de inteligencia artificial y procesamiento de imágenes para automatizar el monitoreo de flujos de personas, facilitando la generación de datos cuantitativos a partir de fuentes de video.",
     approach: "Se implementó una arquitectura modular que integra detección de objetos mediante deep learning, seguimiento multiobjeto y análisis geométrico de trayectorias. El sistema utiliza YOLO11 para detectar personas y ByteTrack para mantener identificadores individuales entre fotogramas. Posteriormente, un algoritmo geométrico basado en intersección de segmentos e histéresis identifica los cruces de una línea virtual, determina su dirección y registra cada evento.",
     tools: "Python, YOLO11, ByteTrack, OpenCV, Supervision, PyTorch, CUDA, NumPy y Pandas.",
-    results: "Se desarrolló un prototipo funcional capaz de detectar y seguir personas, identificar cruces de una línea virtual y clasificar automáticamente entradas y salidas. El sistema genera video anotado con identificadores y trayectorias, además de archivos CSV y JSON con eventos, estadísticas y métricas de rendimiento. La lógica de conteo contempla pruebas sintéticas para evaluar distintos escenarios de desplazamiento, dirección y comportamiento de los identificadores. El proyecto establece una base modular y extensible para desarrollar soluciones de monitoreo automatizado, análisis de flujos y gestión de ocupación mediante visión computacional.",
+    results:"Se desarrolló un prototipo funcional capaz de detectar y seguir personas, identificar cruces de una línea virtual y clasificar automáticamente entradas y salidas. Para evaluar el conteo, se analizó un video de la cámara de seguridad de 30 segundos con 8 cruces reales contados manualmente, el sistema registró correctamente 6 de ellos, lo que equivale a una exactitud de 80%.  Los errores se deben a oclusiones, es decir, dos personas cruzando a la vez o cambios de identificador del tracker. El sistema genera video anotado con identificadores y trayectorias, además de archivos CSV y JSON con eventos, estadísticas y métricas de rendimiento. La lógica de conteo se validó también con pruebas sintéticas de distintos escenarios de desplazamiento, dirección y comportamiento de los identificadores. El proyecto establece una base modular y extensible para desarrollar soluciones de monitoreo automatizado, análisis de flujos y gestión de ocupación mediante visión computacional" ,
     links: [{ label: "Repositorio", url: "" }]
   }
 ];
