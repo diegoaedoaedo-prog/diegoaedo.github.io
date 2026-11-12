@@ -40,7 +40,7 @@ const PROJECTS = [
     context:
       "La clasificación automática de imágenes médicas requiere grandes cantidades de datos etiquetados por especialistas, lo que representa un desafío en términos de tiempo y recursos. Este proyecto aborda dicha problemática mediante técnicas de aprendizaje semi-supervisado aplicadas a imágenes de tomografía computarizada del riñón.",
     approach:
-      "Se implementó una arquitectura ResNet-50 con pesos preentrenados en RadImageNet, utilizando Transfer Learning y una estrategia semi-supervisada basada en pseudoetiquetado mediante modelos Teacher y Student",
+      "Se implementó una arquitectura ResNet-50 con pesos preentrenados en RadImageNet, utilizando Transfer Learning y una estrategia semi-supervisada. Inicialmente el modelo se entrena con un conjunto de datos etiquetados acotados (modelo teacher), luego se incorporan iterativamente datos sin etiqueta y el modelo les entrega una pseudo-etiqueta (modelo student). Finalmente se realiza una auditoria a las pseudo-etiquetas para compararlas con su etiqueta real",
     tools:
       "Python, TensorFlow, Keras, ResNet-50, RadImageNet, Scikit-learn, OpenCV, PIL, Matplotlib y Seaborn.",
     results:
@@ -56,21 +56,20 @@ const PROJECTS = [
   {
     id: "EJEMPLO procesamiento-imagenes",
     category: "Vision computacional - Detección",
-    title: "Deteccion y conteo de personas en camara de seguridad de casa ",
+    title: "PoC - Deteccion y conteo de personas en camara de seguridad de casa ",
     summary:
-      "[EJEMPLO] Pipeline de preprocesamiento y segmentación para detectar defectos en piezas a partir de imágenes.",
-    tags: ["Python", "Yolo11m", "Tracker", "Detección"],
+      "Desarrollo de una prueba de concepto (PoC) para la detección, seguimiento y conteo automatizado de personas mediante visión computacional. El sistema identifica individuos en secuencias de video, rastrea sus trayectorias y reconoce cruces de una línea virtual, clasificando los desplazamientos como entradas o salidas.",
+    tags: ["Python", "Yolo11m", "Tracker", "Detección" , "PoC"],
     image: "assets/img/imagen_deteccion_camara.jpg",
-    imageAlt: "Imagen de una pieza con el defecto detectado",
+    imageAlt: "Persona cruzando la línea de conteo en la cámara de seguridad",
     video: "assets/video/video_deteccion_camara_web.mp4",
     metrics: [
-      { value: "XX%", label: "detección de defectos" },
-      { value: "XX ms", label: "tiempo por imagen" }
+      { value: "80%", label: "Exactitud" },
     ],
-    context: "[EJEMPLO] Qué defectos se buscaban detectar y en qué condiciones.",
-    approach: "[EJEMPLO] Etapas del pipeline: captura, filtrado, segmentación y clasificación.",
-    tools: "[EJEMPLO] OpenCV, NumPy.",
-    results: "[EJEMPLO] Tasa de detección, falsos positivos y tiempos de procesamiento.",
+    context: "El conteo manual de personas presenta limitaciones en términos de precisión, continuidad y disponibilidad de información. Este proyecto explora el uso de inteligencia artificial y procesamiento de imágenes para automatizar el monitoreo de flujos de personas, facilitando la generación de datos cuantitativos a partir de fuentes de video.",
+    approach: "Se implementó una arquitectura modular que integra detección de objetos mediante deep learning, seguimiento multiobjeto y análisis geométrico de trayectorias. El sistema utiliza YOLO11 para detectar personas y ByteTrack para mantener identificadores individuales entre fotogramas. Posteriormente, un algoritmo geométrico basado en intersección de segmentos e histéresis identifica los cruces de una línea virtual, determina su dirección y registra cada evento.",
+    tools: "Python, YOLO11, ByteTrack, OpenCV, Supervision, PyTorch, CUDA, NumPy y Pandas.",
+    results: "Se desarrolló un prototipo funcional capaz de detectar y seguir personas, identificar cruces de una línea virtual y clasificar automáticamente entradas y salidas. El sistema genera video anotado con identificadores y trayectorias, además de archivos CSV y JSON con eventos, estadísticas y métricas de rendimiento. La lógica de conteo contempla pruebas sintéticas para evaluar distintos escenarios de desplazamiento, dirección y comportamiento de los identificadores. El proyecto establece una base modular y extensible para desarrollar soluciones de monitoreo automatizado, análisis de flujos y gestión de ocupación mediante visión computacional.",
     links: [{ label: "Repositorio", url: "" }]
   }
 ];
